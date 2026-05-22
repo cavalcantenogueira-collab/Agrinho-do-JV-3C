@@ -2,7 +2,7 @@
  * PROJETO: Agro Forte, Futuro Sustentável
  * ARQUIVO: script.js
  * DESCRIÇÃO: Controla a navegação por abas/cards, alternância de temas,
- *            processamento lógico e validações do simulador do campo.
+ *            processamento lógico, validações do simulador e troca de foco ativa na rolagem.
  */
 
 // Banco de dados estruturado com as informações profundas de cada tópico
@@ -35,7 +35,7 @@ const dbTopics = {
         title: "Impactos Ambientais das Novas Tecnologias no Campo",
         image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_1",
         badge: "Preservação Verde",
-        text: "A implementação de maquinários com rastreamento GPS inteligente evita a re-passagem desnecessária no mesmo rastro de solo. Esse sistema reduz o consumo de combustíveis fósseis e diminui a compactação destrutiva da terra, permitindo que as raízes respirem melhor e conservem microrganismos importantes. Além disso, o plantio direto sobre a palha evita que o vento e a chuva causem erosões no terreno fértil.",
+        text: "A implementação de maquinários com rastreamento GPS inteligente evita a re-passagem desnecessária no mesmo rastro de solo. Esse sistema reduz o consumo de combustíveis fósseis e diminui a compactação destrutiva da terra, permitindo que as raíces respirem melhor e conservem microrganismos importantes. Além disso, o plantio direto sobre a palha evita que o vento e a chuva causem erosões no terreno fértil.",
         extraTitle: "Vantagem Ecológica",
         extraDesc: "Evitar a compactação do solo resulta em melhor absorção das águas das chuvas, reabastecendo lençóis freáticos sem causar enxurradas degradantes."
     },
@@ -92,21 +92,45 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    /**
+     * NOVO REQUISITO: Detecção dinâmica de rolagem
+     * Alterna o destaque ativo do menu superior conforme o scroll atinge a área dos tópicos
+     */
+    window.addEventListener("scroll", () => {
+        // Se o painel de detalhes não estiver aberto, monitoramos o scroll comum das seções
+        if (detailPanel.style.display !== "block") {
+            const hubTop = hubSection.offsetTop;
+            const scrollPos = window.scrollY;
+
+            // Retira a ativação se passar do limite superior do hub menos a folga do header (120px)
+            if (scrollPos >= (hubTop - 120)) {
+                navHub.classList.add("active");
+                navInicio.classList.remove("active");
+            } else {
+                navInicio.classList.add("active");
+                navHub.classList.remove("active");
+            }
+        }
+    });
+
     // Função de gerenciamento de telas: Voltar para a Grade Principal (Hub)
     function resetToHub() {
         detailPanel.style.display = "none";
         hubSection.style.display = "block";
         heroSection.style.display = "flex";
-        navHub.classList.add("active");
-        navInicio.classList.remove("active");
         window.scrollTo({ top: hubSection.offsetTop - 100, behavior: "smooth" });
     }
 
     brandLogo.addEventListener("click", resetToHub);
+    
     navHub.addEventListener("click", (e) => {
         e.preventDefault();
-        resetToHub();
+        detailPanel.style.display = "none";
+        hubSection.style.display = "block";
+        heroSection.style.display = "flex";
+        window.scrollTo({ top: hubSection.offsetTop - 100, behavior: "smooth" });
     });
+    
     btnBackToHub.addEventListener("click", resetToHub);
 
     navInicio.addEventListener("click", (e) => {
@@ -114,8 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
         detailPanel.style.display = "none";
         hubSection.style.display = "block";
         heroSection.style.display = "flex";
-        navInicio.classList.add("active");
-        navHub.classList.remove("active");
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
@@ -124,6 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
         hubSection.style.display = "none";
         heroSection.style.display = "none";
         detailPanel.style.display = "block";
+        
+        // Mantém o menu marcando a área de informações ativa ao ler os detalhes profundos
+        navHub.classList.add("active");
+        navInicio.classList.remove("active");
+        
         window.scrollTo({ top: 0, behavior: "smooth" });
 
         if (topicId === "simulador") {
