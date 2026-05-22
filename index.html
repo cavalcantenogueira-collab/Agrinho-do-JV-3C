@@ -1,1 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Forte, Futuro Sustentável</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <h1>Agro<span>Sustentável</span></h1>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#praticas">Práticas</a></li>
+                    <li><a href="#tecnologia">Tecnologias</a></li>
+                    <li><a href="#simulador">Simulador</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <button id="themeToggle" class="btn-theme" aria-label="Alternar modo escuro">🌓 Modo Escuro</button>
+        </div>
+    </header>
+
+    <main>
+        
+        <section id="inicio" class="hero-section">
+            <div class="hero-content">
+                <h2>Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente</h2>
+                <p>Descubra como a tecnologia e a responsabilidade ecológica andam de mãos dadas para alimentar o mundo sem esgotar o nosso planeta.</p>
+                <a href="#praticas" class="btn-primary">Explore Práticas</a>
+            </div>
+        </section>
+
+        <section id="praticas" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Práticas Sustentáveis no Campo</h2>
+                <p class="section-subtitle">O equilíbrio começa com a escolha dos métodos corretos de manejo.</p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad451?auto=format&fit=crop&w=600&q=80" alt="Plantio Direto">
+                        <div class="card-body">
+                            <h3>Plantio Direto</h3>
+                            <p>Técnica que cultiva a terra sem o revolvimento do solo, reduzindo a erosão e mantendo a matéria orgânica e a umidade essencial.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=600&q=80" alt="Rotação de Culturas">
+                        <div class="card-body">
+                            <h3>Rotação de Culturas</h3>
+                            <p>Alternar espécies vegetais na mesma área melhora as características físicas e biológicas do solo, além de auxiliar no controle de pragas.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=600&q=80" alt="Manejo de Água">
+                        <div class="card-body">
+                            <h3>Gestão Hídrica</h3>
+                            <p>Uso de sistemas inteligentes como gotejamento e microaspersão para garantir que cada gota de água seja aproveitada ao máximo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologia" class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Inovações que Transformam</h2>
+                <div class="tech-showcase">
+                    <div class="tech-nav">
+                        <button class="btn-tech active" data-tech="drones">Drones e Sensores</button>
+                        <button class="btn-tech" data-tech="bio">Bioinsumos</button>
+                        <button class="btn-tech" data-tech="ia">IA no Campo</button>
+                    </div>
+                    <div id="techContent" class="tech-content-box">
+                        <h3>Drones e Sensores</h3>
+                        <p>A utilização de drones monitora a saúde das plantações em tempo real, detectando focos de pragas e estresse hídrico. Isso permite intervenções cirúrgicas, economizando defensivos químicos e água.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulador" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Simulador de Impacto Agro-Ecológico</h2>
+                <p class="section-subtitle">Escolha uma prática e veja a mensagem dinâmica com a projeção de sustentabilidade.</p>
+                
+                <div class="simulator-box">
+                    <label for="practiceSelect">Selecione uma ação para sua fazenda:</label>
+                    <select id="practiceSelect" class="form-control">
+                        <option value="">-- Escolha uma opção --</option>
+                        <option value="energia">Instalar Painéis Solares</option>
+                        <option value="refloresta">Reflorestar Margens de Rios (APPs)</option>
+                        <option value="adubo">Substituir Químicos por Orgânicos</option>
+                    </select>
+                    
+                    <div id="simulatorResult" class="simulator-result hidden">
+                        <p id="simulatorText"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="section-padding bg-light">
+            <div class="container form-container">
+                <h2 class="section-title">Faça Parte do Futuro</h2>
+                <p class="section-subtitle">Tem dúvidas ou quer implementar essas soluções? Entre em contato conosco.</p>
+                
+                <form id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" required placeholder="Digite seu nome">
+                        <span class="error-message" id="nameError">O nome deve ter pelo menos 3 caracteres.</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required placeholder="seuemail@dominio.com">
+                        <span class="error-message" id="emailError">Insira um e-mail válido.</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Sua Mensagem / Ideia</label>
+                        <textarea id="message" rows="4" required placeholder="Como você pretende aplicar a sustentabilidade no agro?"></textarea>
+                        <span class="error-message" id="messageError">A mensagem não pode ficar vazia.</span>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Enviar Mensagem</button>
+                </form>
+                <div id="formSuccess" class="success-message hidden">
+                    🎉 Obrigado! Sua mensagem foi enviada com sucesso. Juntos pelo agro sustentável!
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Agro Forte, Futuro Sustentável. Desenvolvido para fins educativos ambientais.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+/* ==========================================================================
+   1. VARIÁVEIS DE CORES E CONFIGURAÇÕES GERAIS (Suporte ao Modo Escuro)
+   ========================================================================== */
+:root {
+    --primary-color: #2e7d32; /* Verde Agro */
+    --secondary-color: #81c784;
+    --dark-color: #212121;
+    --light-color: #f5f5f5;
+    --white: #ffffff;
+    --text-color: #333333;
+    --error-color: #d32f2f;
+    --transition-speed: 0.3s;
+}
+
+/* Classes para o Modo Escuro ativadas via JS */
+body.dark-mode {
+    --primary-color: #4caf50;
+    --secondary-color: #1b5e20;
+    --dark-color: #f5f5f5;
+    --light-color: #1e1e1e;
+    --white: #121212;
+    --text-color: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--white);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Layout utilitário */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-padding {
+    padding: 60px 0;
+}
+
+.bg-light {
+    background-color: var(--light-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO E NAVEGAÇÃO (Flexbox)
+   ========================================================================== */
+.main-header {
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color var(--transition-speed);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+}
+
+.logo h1 span {
+    color: var(--primary-color);
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: color var(--transition-speed);
+}
+
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+.btn-theme {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform var(--transition-speed), background-color var(--transition-speed);
+}
+
+.btn-theme:hover {
+    transform: scale(1.05);
+    background-color: var(--secondary-color);
+}
+
+/* ==========================================================================
+   3. SEÇÃO HERO
+   ========================================================================== */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    max-width: 800px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background var(--transition-speed), transform var(--transition-speed);
+}
+
+.btn-primary:hover {
+    background-color: #1b5e20;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   4. CARDS (Flexbox / Grid Responsivo)
+   ========================================================================== */
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: calc(33.333% - 20px);
+    min-width: 280px;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   5. VITRINE DE TECNOLOGIA E SIMULADOR
+   ========================================================================== */
+.tech-showcase {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.tech-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.btn-tech {
+    padding: 10px 20px;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all var(--transition-speed);
+}
+
+.btn-tech.active, .btn-tech:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.tech-content-box {
+    animation: fadeIn 0.5s ease;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Simulador */
+.simulator-box {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--light-color);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    background: var(--white);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.simulator-result {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    color: #1b5e20;
+    font-weight: bold;
+    border-radius: 5px;
+    animation: slideDown 0.4s ease;
+}
+
+body.dark-mode .simulator-result {
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   6. FORM54 
