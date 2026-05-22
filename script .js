@@ -7,42 +7,41 @@ const dbTopics = {
     consumo: {
         title: "Consumo Consciente e Redução de Desperdício",
         image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_2",
-        text: "O consumo consciente no agronegócio foca na eliminação planejada do desperdício de insumos hídricos e de compostos biológicos. Utilizando sensores IoT colocados no solo e relatórios climáticos em tempo real, os produtores agora sabem a quantidade exata de água e fertilizante necessária por metro quadrado...",
+        text: "O consumo consciente no agronegócio foca na eliminação planejada do desperdício de insumos hídricos e de compostos biológicos...",
         extraTitle: "Benefício Prático",
         extraDesc: "O uso de sensores de irrigação direcionada de precisão diminui o consumo total de água potável no cultivo em até 40% anuais."
     },
     energia: {
         title: "Energia Renovável no Dia a Dia do Campo",
         image: "http://googleusercontent.com/image_collection/image_retrieval/2715399768348622291_0",
-        text: "A fazenda moderna é autossuficiente. A integração de placas solares fotovoltaicas montadas em áreas de baixa produtividade ou telhados de galpões abastece sistemas inteiros de distribuição...",
+        text: "A fazenda moderna é autossuficiente. A integração de placas solares fotovoltaicas montadas em áreas de baixa produtividade...",
         extraTitle: "Transformação Sustentável",
-        extraDesc: "O biogás de biomassa orgânica evita o descarte nocivo de esterco animal, transformando detritos em energia e fertilizante natural rico em nitrogênio."
+        extraDesc: "O biogás de biomassa orgânica evita o descarte nocivo de esterco animal, transformando detritos em energia."
     },
     tecnologia: {
         title: "Agricultura Sustentável com Tecnologia de Ponta",
         image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_0",
-        text: "Drones e Inteligência Artificial revolucionaram a administração da lavoura. Através de leituras espectrais, os drones sobrevoam a plantação detectando instantaneamente focos de pragas...",
+        text: "Drones e Inteligência Artificial revolucionaram a administração da lavoura. Através de leituras espectrais...",
         extraTitle: "Fato Tecnológico",
-        extraDesc: "O mapeamento aéreo por IA pode guiar tratores autônomos na aplicação seletiva de defensivos biológicos apenas nas plantas doentes detectadas."
+        extraDesc: "O mapeamento aéreo por IA pode guiar tratores autônomos na aplicação seletiva de defensivos biológicos."
     },
     impactos: {
         title: "Impactos Ambientais das Novas Tecnologias no Campo",
         image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_1",
-        text: "A implementação de maquinários com rastreamento GPS inteligente evita a re-passagem desnecessária no mesmo rastro de solo. Esse sistema reduz o consumo de combustíveis fósseis...",
+        text: "A implementação de maquinários com rastreamento GPS inteligente evita a re-passagem desnecessária no mesmo rastro de solo...",
         extraTitle: "Vantagem Ecológica",
-        extraDesc: "Evitar a compactação do solo resulta em melhor absorção das águas das chuvas, reabastecendo lençóis freáticos sem causar enxurradas degradantes."
+        extraDesc: "Evitar a compactação do solo resulta em melhor absorção das águas das chuvas."
     },
     educacao: {
         title: "Educação Ambiental com Recursos Digitais",
         image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_3",
-        text: "Levar a ciência para o produtor rural é a maior barreira para a abraçar a ecologia. Plataformas de ensino virtual interativas conectam agrônomos especialistas e institutos de pesquisa...",
+        text: "Levar a ciência para o produtor rural é a maior barreira para a abraçar a ecologia. Plataformas de ensino virtual...",
         extraTitle: "Crescimento Coletivo",
-        extraDesc: "Cursos curtos online baseados em aplicativos móveis alcançam milhões de pequenos produtores rurais, democratizando tecnologias de conservação."
+        extraDesc: "Cursos curtos online baseados em aplicativos móveis alcançam milhões de pequenos produtores rurais."
     }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Seleção dos elementos de navegação
     const navInicio = document.getElementById("navInicio");
     const navHub = document.getElementById("navHub");
     const menuToggle = document.getElementById("menuToggle");
@@ -50,24 +49,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeBtn = document.getElementById("themeBtn");
     const brandLogo = document.getElementById("brandLogo");
 
-    // Seleção das seções da página
     const heroSection = document.getElementById("inicio");
     const hubSection = document.getElementById("hub");
     const detailPanel = document.getElementById("detailPanel");
     const detailCard = document.getElementById("detailCard");
     const btnBackToHub = document.getElementById("btnBackToHub");
 
-    /**
-     * CORREÇÃO PRINCIPAL: Monitoramento real do Scroll para trocar as bordas/classes active
-     */
+    // LÓGICA DO SCROLL CORRIGIDA
     window.addEventListener("scroll", () => {
-        // Só monitora a rolagem se o painel de detalhes NÃO estiver aberto na tela full
         if (detailPanel.style.display !== "block") {
-            // Pega a posição do topo do Painel de Informações em relação à tela do navegador
-            const hubTopPosition = hubSection.getBoundingClientRect().top;
+            // Pega a posição exata do topo da seção do painel em relação à tela
+            const hubTop = hubSection.getBoundingClientRect().top;
 
-            // Se o topo da seção do Painel chegar perto do meio da tela, transfere a marcação verde
-            if (hubTopPosition <= window.innerHeight / 2) {
+            // Se o topo da seção do painel atingir a metade superior da tela do usuário
+            if (hubTop <= window.innerHeight / 2) {
                 navHub.classList.add("active");
                 navInicio.classList.remove("active");
             } else {
@@ -77,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Função auxiliar para voltar ao estado padrão do painel principal
     function resetToHub() {
         detailPanel.style.display = "none";
         hubSection.style.display = "block";
@@ -85,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo({ top: hubSection.offsetTop - 90, behavior: "smooth" });
     }
 
-    // Cliques nos links de navegação para scroll suave manual
     navInicio.addEventListener("click", (e) => {
         e.preventDefault();
         detailPanel.style.display = "none";
@@ -105,13 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
     brandLogo.addEventListener("click", resetToHub);
     btnBackToHub.addEventListener("click", resetToHub);
 
-    // Gerenciador de abertura das abas internas nos quadrados
     function showTopicDetail(topicId) {
         hubSection.style.display = "none";
         heroSection.style.display = "none";
         detailPanel.style.display = "block";
         
-        // Se entrou no detalhe, garante que a aba "Painel de Informações" fique verde
         navHub.classList.add("active");
         navInicio.classList.remove("active");
         
@@ -168,7 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Atribui cliques aos cards
     document.querySelectorAll(".topic-card").forEach(card => {
         card.addEventListener("click", () => {
             const topicId = card.getAttribute("data-topic-id");
@@ -176,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Eventos do simulador matemático interno
     function attachSimulatorEvents() {
         const simForm = document.getElementById("simForm");
         const hectaresInput = document.getElementById("hectaresInput");
@@ -224,7 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Configuração básica do Tema Escuro
     if (localStorage.getItem("theme") === "dark") {
         document.documentElement.setAttribute("data-theme", "dark");
     }
@@ -238,7 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Controle do menu mobile hamburguer
     menuToggle.addEventListener("click", () => mainNav.classList.toggle("active"));
     mainNav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mainNav.classList.remove("active")));
 });
