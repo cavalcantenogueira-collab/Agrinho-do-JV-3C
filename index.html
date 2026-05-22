@@ -8,140 +8,107 @@
 </head>
 <body>
 
+    <!-- Cabeçalho Principal -->
     <header class="main-header">
         <div class="header-container">
             <div class="logo">
                 <h1>Agro<span>Sustentável</span></h1>
             </div>
+            
+            <!-- Menu de Navegação -->
             <nav class="main-nav" id="mainNav">
                 <ul>
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#praticas">Práticas</a></li>
-                    <li><a href="#tecnologia">Tecnologias</a></li>
+                    <li><a href="#inicio" class="active">Início</a></li>
+                    <li><a href="#topicos">Diretrizes</a></li>
                     <li><a href="#simulador">Simulador</a></li>
-                    <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
-            <button id="themeToggle" class="btn-theme" aria-label="Alternar modo escuro">🌓 Modo Escuro</button>
+
+            <!-- Controles de Acessibilidade -->
+            <div class="accessibility-control">
+                <button id="themeToggle" class="btn-theme" aria-label="Alternar modo escuro">
+                    <span class="icon-sun">☀️</span>
+                    <span class="icon-moon">🌙</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+            </div>
         </div>
     </header>
 
     <main>
-        
+        <!-- Seção Hero (Introdução) -->
         <section id="inicio" class="hero-section">
             <div class="hero-content">
                 <h2>Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente</h2>
-                <p>Descubra como a tecnologia e a responsabilidade ecológica andam de mãos dadas para alimentar o mundo sem esgotar o nosso planeta.</p>
-                <a href="#praticas" class="btn-primary">Explore Práticas</a>
+                <p>Descubra como a inovação tecnológica e o respeito à natureza caminham juntos para garantir a segurança alimentar das próximas gerações.</p>
+                <a href="#topicos" class="btn-primary">Explorar Práticas</a>
             </div>
         </section>
 
-        <section id="praticas" class="section-padding">
-            <div class="container">
-                <h2 class="section-title">Práticas Sustentáveis no Campo</h2>
-                <p class="section-subtitle">O equilíbrio começa com a escolha dos métodos corretos de manejo.</p>
-                
-                <div class="cards-grid">
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad451?auto=format&fit=crop&w=600&q=80" alt="Plantio Direto">
-                        <div class="card-body">
-                            <h3>Plantio Direto</h3>
-                            <p>Técnica que cultiva a terra sem o revolvimento do solo, reduzindo a erosão e mantendo a matéria orgânica e a umidade essencial.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=600&q=80" alt="Rotação de Culturas">
-                        <div class="card-body">
-                            <h3>Rotação de Culturas</h3>
-                            <p>Alternar espécies vegetais na mesma área melhora as características físicas e biológicas do solo, além de auxiliar no controle de pragas.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=600&q=80" alt="Manejo de Água">
-                        <div class="card-body">
-                            <h3>Gestão Hídrica</h3>
-                            <p>Uso de sistemas inteligentes como gotejamento e microaspersão para garantir que cada gota de água seja aproveitada ao máximo.</p>
-                        </div>
-                    </div>
+        <!-- Seção de Conteúdo Interativo (Tópicos) -->
+        <section id="topicos" class="topics-section">
+            <div class="section-title">
+                <h3>Pilares da Agricultura Moderna</h3>
+                <p>Selecione um tópico abaixo para explorar dados detalhados e soluções práticas.</p>
+            </div>
+
+            <!-- Abas de Navegação dos Tópicos -->
+            <div class="tab-container">
+                <button class="tab-btn active" data-topic="consumo">Consumo Consciente</button>
+                <button class="tab-btn" data-topic="energia">Energia Renovável</button>
+                <button class="tab-btn" data-topic="tecnologia">Tecnologia no Campo</button>
+                <button class="tab-btn" data-topic="impactos">Impactos Ambientais</button>
+                <button class="tab-btn" data-topic="educacao">Educação Ambiental</button>
+            </div>
+
+            <!-- Exibição Dinâmica do Conteúdo (Gerenciado via JS) -->
+            <article class="content-display" id="contentDisplay">
+                <!-- O conteúdo inicial será injetado dinamicamente pelo JavaScript para evitar redundância -->
+            </article>
+        </section>
+
+        <!-- Seção do Simulador Interativo / Validação -->
+        <section id="simulador" class="simulator-section">
+            <div class="simulator-container">
+                <div class="simulator-info">
+                    <h3>Simulador de Eficiência Verde</h3>
+                    <p>Insira a área da sua propriedade (em hectares) e selecione uma prática para calcular uma estimativa do impacto positivo gerado no ecossistema.</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="tecnologia" class="section-padding bg-light">
-            <div class="container">
-                <h2 class="section-title">Inovações que Transformam</h2>
-                <div class="tech-showcase">
-                    <div class="tech-nav">
-                        <button class="btn-tech active" data-tech="drones">Drones e Sensores</button>
-                        <button class="btn-tech" data-tech="bio">Bioinsumos</button>
-                        <button class="btn-tech" data-tech="ia">IA no Campo</button>
-                    </div>
-                    <div id="techContent" class="tech-content-box">
-                        <h3>Drones e Sensores</h3>
-                        <p>A utilização de drones monitora a saúde das plantações em tempo real, detectando focos de pragas e estresse hídrico. Isso permite intervenções cirúrgicas, economizando defensivos químicos e água.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="simulador" class="section-padding">
-            <div class="container">
-                <h2 class="section-title">Simulador de Impacto Agro-Ecológico</h2>
-                <p class="section-subtitle">Escolha uma prática e veja a mensagem dinâmica com a projeção de sustentabilidade.</p>
                 
-                <div class="simulator-box">
-                    <label for="practiceSelect">Selecione uma ação para sua fazenda:</label>
-                    <select id="practiceSelect" class="form-control">
-                        <option value="">-- Escolha uma opção --</option>
-                        <option value="energia">Instalar Painéis Solares</option>
-                        <option value="refloresta">Reflorestar Margens de Rios (APPs)</option>
-                        <option value="adubo">Substituir Químicos por Orgânicos</option>
-                    </select>
-                    
-                    <div id="simulatorResult" class="simulator-result hidden">
-                        <p id="simulatorText"></p>
+                <!-- Formulário com Validação Nativa e Customizada via JS -->
+                <form id="simulatorForm" class="simulator-form" novalidate>
+                    <div class="form-group">
+                        <label for="hectares">Tamanho da Propriedade (Hectares):</label>
+                        <input type="number" id="hectares" min="1" placeholder="Ex: 50" required>
+                        <span class="error-message" id="inputError"></span>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="contato" class="section-padding bg-light">
-            <div class="container form-container">
-                <h2 class="section-title">Faça Parte do Futuro</h2>
-                <p class="section-subtitle">Tem dúvidas ou quer implementar essas soluções? Entre em contato conosco.</p>
-                
-                <form id="contactForm" novalidate>
                     <div class="form-group">
-                        <label for="name">Nome Completo</label>
-                        <input type="text" id="name" required placeholder="Digite seu nome">
-                        <span class="error-message" id="nameError">O nome deve ter pelo menos 3 caracteres.</span>
+                        <label for="practiceSelect">Prática a Adotar:</label>
+                        <select id="practiceSelect" required>
+                            <option value="" disabled selected>Escolha uma opção...</option>
+                            <option value="solar">Instalação de Painéis Solares</option>
+                            <option value="gotejamento">Irrigação por Gotejamento Inteligente</option>
+                            <option value="plantio">Plantio Direto na Palha</option>
+                        </select>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" required placeholder="seuemail@dominio.com">
-                        <span class="error-message" id="emailError">Insira um e-mail válido.</span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Sua Mensagem / Ideia</label>
-                        <textarea id="message" rows="4" required placeholder="Como você pretende aplicar a sustentabilidade no agro?"></textarea>
-                        <span class="error-message" id="messageError">A mensagem não pode ficar vazia.</span>
-                    </div>
-                    
-                    <button type="submit" class="btn-submit">Enviar Mensagem</button>
+
+                    <button type="submit" class="btn-submit">Calcular Impacto</button>
                 </form>
-                <div id="formSuccess" class="success-message hidden">
-                    🎉 Obrigado! Sua mensagem foi enviada com sucesso. Juntos pelo agro sustentável!
+
+                <!-- Feedback Dinâmico do Formulário -->
+                <div id="simulatorResult" class="simulator-result hidden">
+                    <h4>Resultado Estimado</h4>
+                    <p id="resultText"></p>
                 </div>
             </div>
         </section>
-
     </main>
 
+    <!-- Rodapé Semântico -->
     <footer class="main-footer">
-        <p>&copy; 2026 Agro Forte, Futuro Sustentável. Desenvolvido para fins educativos ambientais.</p>
-    </div>
+        <p>&copy; 2026 AgroSustentável. Desenvolvimento focado no equilíbrio ecológico.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
