@@ -1,174 +1,252 @@
 /**
  * PROJETO: Agro Forte, Futuro Sustentável
  * ARQUIVO: script.js
- * DESCRIÇÃO: Controla a interatividade dos tópicos, alternância de tema,
- *            responsividade do menu mobile e validação com simulação lógica.
+ * DESCRIÇÃO: Controla a navegação por abas/cards, alternância de temas,
+ *            processamento lógico e validações do simulador do campo.
  */
 
-// Base de Dados dos Tópicos para Injeção Dinâmica no DOM
-const topicsData = {
+// Banco de dados estruturado com as informações profundas de cada tópico
+const dbTopics = {
     consumo: {
         title: "Consumo Consciente e Redução de Desperdício",
-        description: "A otimização de recursos começa com a gestão precisa dos insumos. O uso de sensores de umidade no solo e monitoramento via satélite impede o desperdício de água potável e a aplicação excessiva de fertilizantes, protegendo os lençóis freáticos e reduzindo custos operacionais.",
-        image: "https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=600&q=80"
+        image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_2",
+        badge: "Consumo Consciente",
+        text: "O consumo consciente no agronegócio foca na eliminação planejada do desperdício de insumos hídricos e de compostos biológicos. Utilizando sensores IoT colocados no solo e relatórios climáticos em tempo real, os produtores agora sabem a quantidade exata de água e fertilizante necessária por metro quadrado. Isso não apenas preserva os aquíferos, mas diminui os custos de produção drasticamente, gerando uma agricultura de alto nível econômico e ecológico.",
+        extraTitle: "Benefício Prático",
+        extraDesc: "O uso de sensores de irrigação direcionada de precisão diminui o consumo total de água potável no cultivo em até 40% anuais."
     },
     energia: {
-        title: "Energia Renovável no Dia a Dia",
-        description: "A transição energética no campo é uma realidade viável. A integração de matrizes solares fotovoltaicas para alimentação de pivôs de irrigação, associada à conversão de biomassa e resíduos orgânicos animais em biogás, confere autossuficiência e resiliência às propriedades rurais.",
-        image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80"
+        title: "Energia Renovável no Dia a Dia do Campo",
+        image: "http://googleusercontent.com/image_collection/image_retrieval/2715399768348622291_0",
+        badge: "Transição Energética",
+        text: "A fazenda moderna é autossuficiente. A integração de placas solares fotovoltaicas montadas em áreas de baixa produtividade ou telhados de galpões abastece sistemas inteiros de distribuição. Além disso, o biogás gerado através da conversão e biodigestão de resíduos animais fornece eletricidade limpa constante, cortando custos fixos de eletricidade pública e reduzindo a pegada ecológica da fazenda a zero.",
+        extraTitle: "Transformação Sustentável",
+        extraDesc: "O biogás de biomassa orgânica evita o descarte nocivo de esterco animal, transformando detritos em energia e fertilizante natural rico em nitrogênio."
     },
     tecnologia: {
-        title: "Agricultura Sustentável com Tecnologia",
-        description: "A agricultura de precisão emprega inteligência artificial e drones para mapear falhas em lavouras. Tratores e maquinários autônomos realizam o plantio com distanciamento milimétrico, reduzindo a compactação do solo e maximizando a colheita por metro quadrado de forma limpa.",
-        image: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=600&q=80"
+        title: "Agricultura Sustentável com Tecnologia de Ponta",
+        image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_0",
+        badge: "Inovação Tecnológica",
+        text: "Drones e Inteligência Artificial revolucionaram a administração da lavoura. Através de leituras espectrais, os drones sobrevoam a plantação detectando instantaneamente focos de pragas e deficiências minerais antes que fiquem visíveis ao olho humano. Isso permite uma ação direta no ponto afetado, evitando a pulverização de remédios químicos em toda a fazenda de forma indiscriminada.",
+        extraTitle: "Fato Tecnológico",
+        extraDesc: "O mapeamento aéreo por IA pode guiar tratores autônomos na aplicação seletiva de defensivos biológicos apenas nas plantas doentes detectadas."
     },
     impactos: {
-        title: "Impactos Ambientais das Novas Tecnologias",
-        description: "As inovações tecnológicas atuam diretamente na mitigação das pegadas de carbono. Ao permitir a transição para sistemas de plantio direto e rotação de culturas assistida por softwares, os novos mecanismos agrícolas preservam microrganismos vitais do solo e retêm mais CO₂.",
-        image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80"
+        title: "Impactos Ambientais das Novas Tecnologias no Campo",
+        image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_1",
+        badge: "Preservação Verde",
+        text: "A implementação de maquinários com rastreamento GPS inteligente evita a re-passagem desnecessária no mesmo rastro de solo. Esse sistema reduz o consumo de combustíveis fósseis e diminui a compactação destrutiva da terra, permitindo que as raízes respirem melhor e conservem microrganismos importantes. Além disso, o plantio direto sobre a palha evita que o vento e a chuva causem erosões no terreno fértil.",
+        extraTitle: "Vantagem Ecológica",
+        extraDesc: "Evitar a compactação do solo resulta em melhor absorção das águas das chuvas, reabastecendo lençóis freáticos sem causar enxurradas degradantes."
     },
     educacao: {
         title: "Educação Ambiental com Recursos Digitais",
-        description: "Capacitar o trabalhador do campo e aproximar a sociedade da produção sustentável é fundamental. Plataformas de ensino à distância (EAD), simulações virtuais e dados abertos conectam centros de pesquisa diretamente ao produtor rural, acelerando a adoção de boas práticas.",
-        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80"
+        image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_3",
+        badge: "Educação & Prática",
+        text: "Levar a ciência para o produtor rural é a maior barreira para a adoção ecológica. Plataformas de ensino virtual interativas conectam agrônomos especialistas e institutos de pesquisa ao trabalhador de campo. Por meio de manuais digitais intuitivos e análises de mercado, estudantes e produtores aprendem rapidamente as diretrizes de rotação de cultura, agroflorestas e métodos de conservação biológica.",
+        extraTitle: "Crescimento Coletivo",
+        extraDesc: "Cursos curtos online baseados em aplicativos móveis alcançam milhões de pequenos produtores rurais, democratizando tecnologias de conservação."
     }
 };
 
-// Inicialização do DOM e Mapeamento de Elementos
 document.addEventListener("DOMContentLoaded", () => {
-    // Seletores Gerais
-    const themeToggle = document.getElementById("themeToggle");
+    // Inicialização de Elementos do DOM
+    const themeBtn = document.getElementById("themeBtn");
     const menuToggle = document.getElementById("menuToggle");
     const mainNav = document.getElementById("mainNav");
-    const tabButtons = document.querySelectorAll(".tab-btn");
-    const contentDisplay = document.getElementById("contentDisplay");
-    
-    // Seletores do Simulador
-    const simulatorForm = document.getElementById("simulatorForm");
-    const hectaresInput = document.getElementById("hectares");
-    const practiceSelect = document.getElementById("practiceSelect");
-    const inputError = document.getElementById("inputError");
-    const simulatorResult = document.getElementById("simulatorResult");
-    const resultText = document.getElementById("resultText");
+    const brandLogo = document.getElementById("brandLogo");
+    const navHub = document.getElementById("navHub");
+    const navInicio = document.getElementById("navInicio");
 
-    /**
-     * GESTÃO DE TEMA (MODO ESCURO)
-     * Verifica preferência salva no navegador ou aplica o padrão light
-     */
-    const currentTheme = localStorage.getItem("theme") || "light";
-    if (currentTheme === "dark") {
+    const hubSection = document.getElementById("hub");
+    const heroSection = document.getElementById("inicio");
+    const detailPanel = document.getElementById("detailPanel");
+    const detailCard = document.getElementById("detailCard");
+    const btnBackToHub = document.getElementById("btnBackToHub");
+
+    // Configuração e persistência do Modo Escuro
+    const savedTheme = localStorage.getItem("theme") || "light";
+    if (savedTheme === "dark") {
         document.documentElement.setAttribute("data-theme", "dark");
     }
 
-    themeToggle.addEventListener("click", () => {
-        let theme = "light";
-        if (document.documentElement.getAttribute("data-theme") !== "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-            theme = "dark";
-        } else {
+    themeBtn.addEventListener("click", () => {
+        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        if (isDark) {
             document.documentElement.removeAttribute("data-theme");
+            localStorage.setItem("theme", "light");
+        } else {
+            document.documentElement.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
         }
-        localStorage.setItem("theme", theme);
     });
 
-    /**
-     * NAVEGAÇÃO MOBILE (MENU HAMBÚRGUER)
-     */
+    // Menu Responsivo Mobile
     menuToggle.addEventListener("click", () => {
         mainNav.classList.toggle("active");
     });
 
-    // Fecha o menu mobile ao clicar em um link
-    mainNav.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
+    mainNav.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
             mainNav.classList.remove("active");
-            
-            // Gerencia classe ativa visual do menu superior
-            mainNav.querySelectorAll("a").forEach(item => item.classList.remove("active"));
-            link.classList.add("active");
         });
     });
 
-    /**
-     * NAVEGAÇÃO DINÂMICA POR TÓPICOS (ABAS/TABS)
-     */
-    function renderTopic(topicKey) {
-        const data = topicsData[topicKey];
-        if (!data) return;
-
-        // Injeta a estrutura HTML estruturada com base nas regras do CSS Flexbox
-        contentDisplay.innerHTML = `
-            <div class="topic-grid">
-                <div class="topic-text">
-                    <h4>${data.title}</h4>
-                    <p>${data.description}</p>
-                </div>
-                <img src="${data.image}" alt="Representação visual de ${data.title}" class="topic-image">
-            </div>
-        `;
+    // Função de gerenciamento de telas: Voltar para a Grade Principal (Hub)
+    function resetToHub() {
+        detailPanel.style.display = "none";
+        hubSection.style.display = "block";
+        heroSection.style.display = "flex";
+        navHub.classList.add("active");
+        navInicio.classList.remove("active");
+        window.scrollTo({ top: hubSection.offsetTop - 100, behavior: "smooth" });
     }
 
-    // Adiciona evento de clique para cada botão de aba
-    tabButtons.forEach(button => {
-        button.addEventListener("click", (e) => {
-            tabButtons.forEach(btn => btn.classList.remove("active"));
-            e.target.classList.add("active");
-            
-            const selectedTopic = e.target.getAttribute("data-topic");
-            renderTopic(selectedTopic);
+    brandLogo.addEventListener("click", resetToHub);
+    navHub.addEventListener("click", (e) => {
+        e.preventDefault();
+        resetToHub();
+    });
+    btnBackToHub.addEventListener("click", resetToHub);
+
+    navInicio.addEventListener("click", (e) => {
+        e.preventDefault();
+        detailPanel.style.display = "none";
+        hubSection.style.display = "block";
+        heroSection.style.display = "flex";
+        navInicio.classList.add("active");
+        navHub.classList.remove("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Manipulação do DOM: Montagem e exibição do conteúdo interno da aba
+    function showTopicDetail(topicId) {
+        hubSection.style.display = "none";
+        heroSection.style.display = "none";
+        detailPanel.style.display = "block";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        if (topicId === "simulador") {
+            // Injeção da estrutura do Tópico de Simulação
+            detailCard.innerHTML = `
+                <div class="detail-body">
+                    <h4 class="detail-title">Simulador de Eficiência Verde</h4>
+                    <p class="detail-text">Adote práticas ecológicas e calcule a economia de recursos hídricos, redução de CO₂ ou proteção de solo gerada pela escala da sua propriedade agrícola!</p>
+                    
+                    <div class="sim-grid">
+                        <div class="sim-form-container">
+                            <form id="simForm" class="sim-form" novalidate>
+                                <div class="form-group">
+                                    <label for="hectaresInput">Tamanho da Terra (Hectares):</label>
+                                    <input type="number" id="hectaresInput" placeholder="Exemplo: 45" required>
+                                    <div id="simError" class="form-error"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="practiceInput">Estratégia Tecnológica:</label>
+                                    <select id="practiceInput" required>
+                                        <option value="" disabled selected>Selecione um sistema...</option>
+                                        <option value="gotejamento">Irrigação por Gotejamento Automatizado</option>
+                                        <option value="solar">Painéis Solares Fotovoltaicos</option>
+                                        <option value="plantio">Manejo de Plantio Direto na Palha</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn-calc">Gerar Simulação Verde &rarr;</button>
+                            </form>
+                        </div>
+
+                        <div class="sim-results" id="simResults">
+                            <h5>Aguardando Dados...</h5>
+                            <p>Preencha os campos ao lado para que a inteligência ambiental calcule o impacto projetado para sua terra.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            attachSimulatorEvents();
+        } else {
+            // Injeção dos Tópicos Informativos Tradicionais
+            const info = dbTopics[topicId];
+            if (!info) return;
+
+            detailCard.innerHTML = `
+                <img class="detail-header-img" src="${info.image}" alt="${info.title}">
+                <div class="detail-body">
+                    <h4 class="detail-title">${info.title}</h4>
+                    <p class="detail-text">${info.text}</p>
+                    <div class="interactive-extra">
+                        <h5>${info.extraTitle}</h5>
+                        <p>${info.extraDesc}</p>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    // Vincula eventos de clique aos cards/quadrados informativos
+    const cards = document.querySelectorAll(".topic-card");
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            const topicId = card.getAttribute("data-topic-id");
+            showTopicDetail(topicId);
         });
     });
 
-    // Renderização inicial do primeiro tópico padrão
-    renderTopic("consumo");
+    // Lógica Matemática e Mensagens Dinâmicas do Simulador
+    function attachSimulatorEvents() {
+        const simForm = document.getElementById("simForm");
+        const hectaresInput = document.getElementById("hectaresInput");
+        const practiceInput = document.getElementById("practiceInput");
+        const simError = document.getElementById("simError");
+        const simResults = document.getElementById("simResults");
 
-    /**
-     * VALIDAÇÃO DE FORMULÁRIO E SIMULADOR LÓGICO
-     */
-    simulatorForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // Impede o envio real do formulário
-        
-        const hectares = parseFloat(hectaresInput.value);
-        const practice = practiceSelect.value;
-        
-        // Limpa estados de erro anteriores
-        inputError.textContent = "";
-        simulatorResult.classList.add("hidden");
+        simForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            simError.textContent = "";
 
-        // Validação Manual Customizada
-        if (isNaN(hectares) || hectares <= 0) {
-            inputError.textContent = "Por favor, insira um valor maior que zero.";
-            hectaresInput.focus();
-            return;
-        }
+            const hectares = parseFloat(hectaresInput.value);
+            const practice = practiceInput.value;
 
-        if (!practice) {
-            alert("Selecione uma prática agrícola válida.");
-            return;
-        }
+            // Validação simples obrigatória
+            if (isNaN(hectares) || hectares <= 0) {
+                simError.textContent = "Digite uma área territorial válida e superior a 0 hectares.";
+                hectaresInput.focus();
+                return;
+            }
 
-        // Execução da lógica com base na escolha do usuário
-        let resultadoCalculado = "";
+            if (!practice) {
+                simError.textContent = "Por favor, selecione uma tecnologia ecológica do painel.";
+                return;
+            }
 
-        switch (practice) {
-            case "solar":
-                const kwhEconomizados = hectares * 145;
-                resultadoCalculado = `Ao converter áreas de infraestrutura para captação solar em sua propriedade de ${hectares} hectares, a redução estimada de emissão de CO₂ é de aproximadamente ${(kwhEconomizados * 0.5).toFixed(1)} kg por mês, devido à geração limpa de energia.`;
-                break;
-            case "gotejamento":
-                const litrosAgua = hectares * 12000;
-                resultadoCalculado = `A substituição dos sistemas tradicionais por gotejamento automatizado em ${hectares} hectares gerará uma economia estimada de até ${litrosAgua.toLocaleString('pt-BR')} litros de água por safra, mantendo a umidade ideal da raiz.`;
-                break;
-            case "plantio":
-                const nitrogenioRetido = hectares * 45;
-                resultadoCalculado = `O manejo por Plantio Direto em sua propriedade de ${hectares} hectares evitará a erosão severa do solo e fixará cerca de ${nitrogenioRetido} kg de nutrientes orgânicos nativos na terra sem a necessidade de aditivos químicos agressivos.`;
-                break;
-            default:
-                resultadoCalculado = "Prática não reconhecida pelo sistema.";
-        }
+            let resultHtml = "";
+            if (practice === "gotejamento") {
+                const aguaSalva = hectares * 15000;
+                resultHtml = `
+                    <h5>Excelente Escolha Ecológica!</h5>
+                    <p>Adotando a irrigação robotizada inteligente em sua lavoura de <strong>${hectares} hectares</strong>, a economia anual de água limpa pode alcançar:</p>
+                    <span class="badge-saving">${aguaSalva.toLocaleString('pt-BR')} Litros Poupados</span>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">Isso reduz a energia das bombas hídricas e preserva os mananciais vizinhos.</p>
+                `;
+            } else if (practice === "solar") {
+                const co2Evitado = hectares * 180;
+                resultHtml = `
+                    <h5>Energia Limpa Ativada!</h5>
+                    <p>Utilizando geradores fotovoltaicos de apoio ecológico em sua terra de <strong>${hectares} hectares</strong>, você ajuda a evitar emissões prejudiciais de CO₂:</p>
+                    <span class="badge-saving">${co2Evitado.toLocaleString('pt-BR')} kg de CO₂ p/ ano</span>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">Isto equivale ao plantio de cerca de ${(hectares * 12).toFixed(0)} árvores novas.</p>
+                `;
+            } else if (practice === "plantio") {
+                const soloPreservado = hectares * 4;
+                resultHtml = `
+                    <h5>Manejo Biológico Conservado!</h5>
+                    <p>Ao realizar o Plantio Direto sobre cobertura vegetal morta em sua propriedade rural de <strong>${hectares} hectares</strong>, você conserva:</p>
+                    <span class="badge-saving">${soloPreservado} Toneladas de nutrientes retidos</span>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">Sua plantação ganha imunidade hídrica contra períodos inesperados de seca prolongada.</p>
+                `;
+            }
 
-        // Apresentação dos dados de forma dinâmica e fluida
-        resultText.textContent = resultadoCalculado;
-        simulatorResult.classList.remove("hidden");
-    });
+            simResults.innerHTML = resultHtml;
+        });
+    }
 });
