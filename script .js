@@ -1,270 +1,138 @@
-/**
- * PROJETO: Agro Forte, Futuro Sustentável
- * ARQUIVO: script.js (Versão Unificada e Corrigida)
- */
-
-const dbTopics = {
+// Banco de dados simulado para alimentar os tópicos de maneira limpa e dinâmica
+const topicsData = {
     consumo: {
         title: "Consumo Consciente e Redução de Desperdício",
-        image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_2",
-        text: "O consumo consciente no agronegócio foca na eliminação planejada do desperdício de insumos hídricos e de compostos biológicos. Utilizando sensores IoT colocados no solo e relatórios climáticos em tempo real, os produtores agora sabem a quantidade exata de água e fertilizante necessária por metro quadrado...",
-        extraTitle: "Benefício Prático",
-        extraDesc: "O uso de sensores de irrigação direcionada de precisão diminui o consumo total de água potável no cultivo em até 40% anuais."
+        image: "https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&q=80&w=800",
+        text: "O consumo consciente no campo envolve a implementação de sistemas avançados de irrigação gotejamento, monitoramento de umidade do solo por sensores e captação da água da chuva. Essas técnicas evitam o desperdício dos recursos hídricos e garantem que a planta receba exatamente o que precisa para prosperar."
     },
     energia: {
-        title: "Energia Renovável no Dia a Dia do Campo",
-        image: "http://googleusercontent.com/image_collection/image_retrieval/2715399768348622291_0",
-        text: "A fazenda moderna é autossuficiente. A integração de placas solares fotovoltaicas montadas em áreas de baixa produtividade ou telhados de galpões abastece sistemas inteiros de distribuição...",
-        extraTitle: "Transformação Sustentável",
-        extraDesc: "O biogás de biomassa orgânica evita o descarte nocivo de esterco animal, transformando detritos em energia e fertilizante natural rico em nitrogênio."
+        title: "Energia Renovável no Dia a Dia",
+        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=800",
+        text: "A matriz energética do agronegócio está mudando. A instalação de painéis solares em galpões, o uso de biomassa gerada a partir de resíduos orgânicos e pequenas usinas eólicas reduzem drasticamente a pegada de carbono da produção, tornando as fazendas autossuficientes e ecologicamente responsáveis."
     },
     tecnologia: {
-        title: "Agricultura Sustentável com Tecnologia de Ponta",
-        image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_0",
-        text: "Drones e Inteligência Artificial revolucionaram a administração da lavoura. Através de leituras espectrais, os drones sobrevoam a plantação detectando instantaneamente focos de pragas...",
-        extraTitle: "Fato Tecnológico",
-        extraDesc: "O mapeamento aéreo por IA pode guiar tratores autônomos na aplicação seletiva de defensivos biológicos apenas nas plantas doentes detectadas."
+        title: "Agricultura Sustentável com Tecnologia",
+        image: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&q=80&w=800",
+        text: "Tratores autônomos guiados por GPS de alta precisão e drones inteligentes que mapeiam falhas no plantio permitem a aplicação localizada de insumos. Isso significa que defensivos e fertilizantes só são usados onde há real necessidade, poupando o solo e o lençol freático."
     },
     impactos: {
-        title: "Impactos Ambientais das Novas Tecnologias no Campo",
-        image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_1",
-        text: "A implementação de maquinários com rastreamento GPS inteligente evita a re-passagem desnecessária no mesmo rastro de solo. Esse sistema reduz o consumo de combustíveis fósseis...",
-        extraTitle: "Vantagem Ecológica",
-        extraDesc: "Evitar a compactação do solo resulta em melhor absorção das águas das chuvas, reabastecendo lençóis freáticos sem causar enxurradas degradantes."
+        title: "Impactos Ambientais das Novas Tecnologias",
+        image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad451?auto=format&fit=crop&q=80&w=800",
+        text: "A tecnologia atua diretamente na regeneração. Ferramentas digitais auxiliam no manejo integrado de pragas e no plantio direto, retendo mais carbono na terra, evitando a erosão e ajudando a conservar florestas nativas e ecossistemas vizinhos às áreas produtivas."
     },
     educacao: {
         title: "Educação Ambiental com Recursos Digitais",
-        image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_3",
-        text: "Levar a ciência para o produtor rural é a maior barreira para a abraçar a ecologia. Plataformas de ensino virtual interativas conectam agrônomos especialistas e institutos de pesquisa...",
-        extraTitle: "Crescimento Coletivo",
-        extraDesc: "Cursos curtos online baseados em aplicativos móveis alcançam milhões de pequenos produtores rurais, democratizando tecnologias de conservação."
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
+        text: "Capacitar o produtor e a comunidade é vital. Através de plataformas móveis e recursos educacionais digitais, técnicas de sustentabilidade chegam de forma acessível a qualquer smartphone, transformando conhecimento técnico em práticas diárias eficientes."
     }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Seleção dos elementos de navegação
-    const navInicio = document.getElementById("navInicio");
-    const navHub = document.getElementById("navHub");
-    const menuToggle = document.getElementById("menuToggle");
-    const mainNav = document.getElementById("mainNav");
-    const themeBtn = document.getElementById("themeBtn");
-    const brandLogo = document.getElementById("brandLogo");
+// Captura de elementos do DOM
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section');
+const themeToggle = document.getElementById('theme-toggle');
+const cardButtons = document.querySelectorAll('.topic-card');
+const contentDisplay = document.getElementById('content-display');
+const dynamicBody = document.getElementById('dynamic-body');
+const closeDisplay = document.getElementById('close-display');
+const contactForm = document.getElementById('contact-form');
+const userEmail = document.getElementById('user-email');
+const formMessage = document.getElementById('form-message');
 
-    // Seleção das seções da página
-    const heroSection = document.getElementById("inicio");
-    const hubSection = document.getElementById("hub");
-    const detailPanel = document.getElementById("detailPanel");
-    const detailCard = document.getElementById("detailCard");
-    const btnBackToHub = document.getElementById("btnBackToHub");
+/* ==========================================================================
+   EFEITO: Menu Ativo por Rolagem (ScrollSpy)
+   ========================================================================== */
+window.addEventListener('scroll', () => {
+    let currentSectionId = 'inicio';
 
-    // ========================================================
-    // NOVO SISTEMA DE SCROLL INTELEGENTE (IntersectionObserver)
-    // ========================================================
-    const sections = [heroSection, hubSection];
-
-    const observerOptions = {
-        root: null,
-        rootMargin: "-30% 0px -50% 0px", // Detecta a seção quando ela está no centro da tela
-        threshold: 0
-    };
-
-    const observerCallback = (entries) => {
-        entries.forEach(entry => {
-            // Só altera o menu se o painel de detalhes NÃO estiver aberto na tela
-            if (entry.isIntersecting && detailPanel.style.display !== "block") {
-                const idSecaoAtiva = entry.target.getAttribute("id");
-                
-                if (idSecaoAtiva === "inicio") {
-                    if (navInicio) navInicio.classList.add("active");
-                    if (navHub) navHub.classList.remove("active");
-                } else if (idSecaoAtiva === "hub") {
-                    if (navHub) navHub.classList.add("active");
-                    if (navInicio) navInicio.classList.remove("active");
-                }
-            }
-        });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
     sections.forEach(section => {
-        if (section) observer.observe(section);
-    });
-    // ========================================================
-
-    // Função auxiliar para voltar ao estado padrão do painel principal
-    function resetToHub() {
-        detailPanel.style.display = "none";
-        hubSection.style.display = "block";
-        heroSection.style.display = "flex";
-        window.scrollTo({ top: hubSection.offsetTop - 90, behavior: "smooth" });
-    }
-
-    // Cliques nos links de navegação para scroll suave manual
-    if (navInicio) {
-        navInicio.addEventListener("click", (e) => {
-            e.preventDefault();
-            detailPanel.style.display = "none";
-            hubSection.style.display = "block";
-            heroSection.style.display = "flex";
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    }
-
-    if (navHub) {
-        navHub.addEventListener("click", (e) => {
-            e.preventDefault();
-            detailPanel.style.display = "none";
-            hubSection.style.display = "block";
-            heroSection.style.display = "flex";
-            window.scrollTo({ top: hubSection.offsetTop - 90, behavior: "smooth" });
-        });
-    }
-
-    if (brandLogo) brandLogo.addEventListener("click", resetToHub);
-    if (btnBackToHub) btnBackToHub.addEventListener("click", resetToHub);
-
-    // Gerenciador de abertura das abas internas nos quadrados
-    function showTopicDetail(topicId) {
-        hubSection.style.display = "none";
-        heroSection.style.display = "none";
-        detailPanel.style.display = "block";
-        
-        // Se entrou no detalhe, garante que a aba "Painel de Informações" fique ativa
-        if (navHub) navHub.classList.add("active");
-        if (navInicio) navInicio.classList.remove("active");
-        
-        window.scrollTo({ top: 0, behavior: "smooth" });
-
-        if (topicId === "simulador") {
-            detailCard.innerHTML = `
-                <div class="detail-body">
-                    <h4 class="detail-title">Simulador de Eficiência Verde</h4>
-                    <p class="detail-text">Adote práticas ecológicas e calcule a economia de recursos hídricos para sua propriedade agrícola!</p>
-                    <div class="sim-grid">
-                        <div class="sim-form-container">
-                            <form id="simForm" class="sim-form" novalidate>
-                                <div class="form-group">
-                                    <label for="hectaresInput">Tamanho da Terra (Hectares):</label>
-                                    <input type="number" id="hectaresInput" placeholder="Exemplo: 45" required>
-                                    <div id="simError" class="form-error"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="practiceInput">Estratégia Tecnológica:</label>
-                                    <select id="practiceInput" required>
-                                        <option value="" disabled selected>Selecione um sistema...</option>
-                                        <option value="gotejamento">Irrigação por Gotejamento Automatizado</option>
-                                        <option value="solar">Painéis Solares Fotovoltaicos</option>
-                                        <option value="plantio">Manejo de Plantio Direto na Palha</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn-calc">Gerar Simulação Verde &rarr;</button>
-                            </form>
-                        </div>
-                        <div class="sim-results" id="simResults">
-                            <h5>Aguardando Dados...</h5>
-                            <p>Preencha os campos ao lado para calcular o impacto projetado para sua terra.</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            attachSimulatorEvents();
-        } else {
-            const info = dbTopics[topicId];
-            if (!info) return;
-
-            detailCard.innerHTML = `
-                <img class="detail-header-img" src="${info.image}" alt="${info.title}">
-                <div class="detail-body">
-                    <h4 class="detail-title">${info.title}</h4>
-                    <p class="detail-text">${info.text}</p>
-                    <div class="interactive-extra">
-                        <h5>${info.extraTitle}</h5>
-                        <p>${info.extraDesc}</p>
-                    </div>
-                </div>
-            `;
+        const sectionTop = section.offsetTop;
+        // Se a rolagem passou do topo da seção menos uma margem do header
+        if (window.scrollY >= sectionTop - 100) {
+            currentSectionId = section.getAttribute('id');
         }
-    }
-
-    // Atribui cliques aos cards
-    document.querySelectorAll(".topic-card").forEach(card => {
-        card.addEventListener("click", () => {
-            const topicId = card.getAttribute("data-topic-id");
-            showTopicDetail(topicId);
-        });
     });
 
-    // Eventos do simulador matemático interno
-    function attachSimulatorEvents() {
-        const simForm = document.getElementById("simForm");
-        const hectaresInput = document.getElementById("hectaresInput");
-        const practiceInput = document.getElementById("practiceInput");
-        const simError = document.getElementById("simError");
-        const simResults = document.getElementById("simResults");
-
-        if (simForm) {
-            simForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                simError.textContent = "";
-
-                const hectares = parseFloat(hectaresInput.value);
-                const practice = practiceInput.value;
-
-                if (isNaN(hectares) || hectares <= 0) {
-                    simError.textContent = "Digite uma área territorial válida superior a 0 hectares.";
-                    return;
-                }
-                if (!practice) {
-                    simError.textContent = "Por favor, selecione uma tecnologia ecológica.";
-                    return;
-                }
-
-                let resultHtml = "";
-                if (practice === "gotejamento") {
-                    resultHtml = `
-                        <h5>Excelente Escolha Ecológica!</h5>
-                        <p>Economia anual de água limpa estimada em:</p>
-                        <span class="badge-saving">${(hectares * 15000).toLocaleString('pt-BR')} Litros Poupados</span>
-                    `;
-                } else if (practice === "solar") {
-                    resultHtml = `
-                        <h5>Energia Limpa Ativada!</h5>
-                        <p>Evita emissões prejudiciais de CO₂ estimadas em:</p>
-                        <span class="badge-saving">${(hectares * 180).toLocaleString('pt-BR')} kg de CO₂ p/ ano</span>
-                    `;
-                } else if (practice === "plantio") {
-                    resultHtml = `
-                        <h5>Manejo Biológico Conservado!</h5>
-                        <p>Sua propriedade rural conserva cerca de:</p>
-                        <span class="badge-saving">${hectares * 4} Toneladas de nutrientes retidos</span>
-                    `;
-                }
-                simResults.innerHTML = resultHtml;
-            });
+    navLinks.forEach(link => {
+        // Remove a borda/classe ativa de todos
+        link.classList.remove('active');
+        // Adiciona apenas no botão correspondente à seção atual
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
         }
-    }
+    });
+});
 
-    // Configuração básica do Tema Escuro
-    if (localStorage.getItem("theme") === "dark") {
-        document.documentElement.setAttribute("data-theme", "dark");
-    }
-    if (themeBtn) {
-        themeBtn.addEventListener("click", () => {
-            if (document.documentElement.getAttribute("data-theme") === "dark") {
-                document.documentElement.removeAttribute("data-theme");
-                localStorage.setItem("theme", "light");
-            } else {
-                document.documentElement.setAttribute("data-theme", "dark");
-                localStorage.setItem("theme", "dark");
-            }
-        });
-    }
+/* ==========================================================================
+   INTERAÇÃO: Abrir Tópicos/Abas Individualmente
+   ========================================================================== */
+cardButtons.forEach(card => {
+    card.addEventListener('click', () => {
+        const key = card.getAttribute('data-topic');
+        const data = topicsData[key];
 
-    // Controle do menu mobile hamburguer
-    if (menuToggle) {
-        menuToggle.addEventListener("click", () => mainNav.classList.toggle("active"));
-    }
-    if (mainNav) {
-        mainNav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mainNav.classList.remove("active")));
+        if (data) {
+            // Constrói a aba com informações e imagens de forma dinâmica
+            dynamicBody.innerHTML = `
+                <h4>${data.title}</h4>
+                <img src="${data.image}" alt="${data.title}" class="display-img">
+                <p>${data.text}</p>
+            `;
+            // Revela a caixa de exibição
+            contentDisplay.classList.remove('hidden');
+            // Rola suavemente até o conteúdo aberto
+            contentDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    });
+});
+
+// Fechar exibição da aba
+closeDisplay.addEventListener('click', () => {
+    contentDisplay.classList.add('hidden');
+});
+
+/* ==========================================================================
+   FUNCIONALIDADE: Modo Escuro (Dark Mode)
+   ========================================================================== */
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = "🌓 Modo Escuro";
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = "☀️ Modo Claro";
     }
 });
+
+/* ==========================================================================
+   VALIDAÇÃO: Validação Simples de Formulário
+   ========================================================================== */
+contactForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Evita recarregamento da página
+
+    const emailValue = userEmail.value.trim();
+
+    // Regex simples para validação estrutural de e-mail
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailValue === "") {
+        showFormMessage("Por favor, preencha o campo de e-mail.", "error");
+    } else if (!emailPattern.test(emailValue)) {
+        showFormMessage("Por favor, insira um e-mail válido.", "error");
+    } else {
+        showFormMessage("Sucesso! Você foi cadastrado em nossa base sustentável.", "success");
+        contactForm.reset();
+    }
+});
+
+// Função auxiliar para exibir feedback dinâmico
+function showFormMessage(text, type) {
+    formMessage.textContent = text;
+    formMessage.className = `form-message ${type}`;
+    
+    // Desaparece com a mensagem após 4 segundos
+    setTimeout(() => {
+        formMessage.textContent = "";
+    }, 4000);
+}
