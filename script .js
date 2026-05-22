@@ -35,7 +35,7 @@ const dbTopics = {
         title: "Impactos Ambientais das Novas Tecnologias no Campo",
         image: "http://googleusercontent.com/image_collection/image_retrieval/16861845410880397731_1",
         badge: "Preservação Verde",
-        text: "A implementação de maquinários com rastreamento GPS inteligente evita a re-passagem desnecessária no mesmo rastro de solo. Esse sistema reduz o consumo de combustíveis fósseis e diminui a compactação destrutiva da terra, permitindo que as raíces respirem melhor e conservem microrganismos importantes. Além disso, o plantio direto sobre a palha evita que o vento e a chuva causem erosões no terreno fértil.",
+        text: "A implementação de maquinários com rastreamento GPS inteligente evita a re-passagem desnecessária no mesmo rastro de solo. Esse sistema reduz o consumo de combustíveis fósseis e diminui a compactação destrutiva da terra, permitindo que as raízes respirem melhor e conservem microrganismos importantes. Além disso, o plantio direto sobre a palha evita que o vento e a chuva causem erosões no terreno fértil.",
         extraTitle: "Vantagem Ecológica",
         extraDesc: "Evitar a compactação do solo resulta em melhor absorção das águas das chuvas, reabastecendo lençóis freáticos sem causar enxurradas degradantes."
     },
@@ -93,17 +93,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /**
-     * NOVO REQUISITO: Detecção dinâmica de rolagem
-     * Alterna o destaque ativo do menu superior conforme o scroll atinge a área dos tópicos
+     * CORREÇÃO COMPORTAMENTAL: Troca Dinâmica Ativa por Geometria Retangular
+     * Monitora em tempo real a área visível do Painel (#hub) na tela para evitar travamentos.
      */
     window.addEventListener("scroll", () => {
-        // Se o painel de detalhes não estiver aberto, monitoramos o scroll comum das seções
         if (detailPanel.style.display !== "block") {
-            const hubTop = hubSection.offsetTop;
-            const scrollPos = window.scrollY;
-
-            // Retira a ativação se passar do limite superior do hub menos a folga do header (120px)
-            if (scrollPos >= (hubTop - 120)) {
+            const hubBounds = hubSection.getBoundingClientRect();
+            
+            // Se o topo da seção de tópicos chegar próximo ou passar da metade superior da tela
+            if (hubBounds.top <= (window.innerHeight / 2)) {
                 navHub.classList.add("active");
                 navInicio.classList.remove("active");
             } else {
