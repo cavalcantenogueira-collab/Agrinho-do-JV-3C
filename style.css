@@ -548,3 +548,7 @@ body:not([data-theme="dark"]) .icon-moon { display: block; }
     .detail-body { padding: 1.5rem; }
     .detail-title { font-size: 1.8rem; }
 }
+.active {
+    border-bottom: 3px solid #2d6a4f !important; /* Coloca a borda verde */
+    color: #2d6a4f !important; /* Deixa o texto verde quando ativo */
+}
