@@ -3,7 +3,7 @@ const topicsData = {
     consumo: {
         title: "Consumo Consciente e Redução de Desperdício",
         image: "https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&q=80&w=800",
-        text: "O consumo consciente no campo envolve a implementação de sistemas avançados de irrigação gotejamento, monitoramento de umidade do solo por sensores e captação da água da chuva. Essas técnicas evitam o desperdício dos recursos hídricos e garantem que a planta receba exatamente o que precisa para prosperar."
+        text: "O consumo consciente no campo ECO envolve a implementação de sistemas avançados de irrigação gotejamento, monitoramento de umidade do solo por sensores e captação da água da chuva. Essas técnicas evitam o desperdício dos recursos hídricos e garantem que a planta receba exatamente o que precisa para prosperar."
     },
     energia: {
         title: "Energia Renovável no Dia a Dia",
@@ -47,16 +47,13 @@ window.addEventListener('scroll', () => {
 
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        // Se a rolagem passou do topo da seção menos uma margem do header
         if (window.scrollY >= sectionTop - 100) {
             currentSectionId = section.getAttribute('id');
         }
     });
 
     navLinks.forEach(link => {
-        // Remove a borda/classe ativa de todos
         link.classList.remove('active');
-        // Adiciona apenas no botão correspondente à seção atual
         if (link.getAttribute('href') === `#${currentSectionId}`) {
             link.classList.add('active');
         }
@@ -72,67 +69,19 @@ cardButtons.forEach(card => {
         const data = topicsData[key];
 
         if (data) {
-            // Constrói a aba com informações e imagens de forma dinâmica
             dynamicBody.innerHTML = `
                 <h4>${data.title}</h4>
                 <img src="${data.image}" alt="${data.title}" class="display-img">
                 <p>${data.text}</p>
             `;
-            // Revela a caixa de exibição
             contentDisplay.classList.remove('hidden');
-            // Rola suavemente até o conteúdo aberto
             contentDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     });
 });
 
-// Fechar exibição da aba
 closeDisplay.addEventListener('click', () => {
     contentDisplay.classList.add('hidden');
 });
 
-/* ==========================================================================
-   FUNCIONALIDADE: Modo Escuro (Dark Mode)
-   ========================================================================== */
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    if (currentTheme === 'dark') {
-        document.documentElement.removeAttribute('data-theme');
-        themeToggle.textContent = "🌓 Modo Escuro";
-    } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = "☀️ Modo Claro";
-    }
-});
-
-/* ==========================================================================
-   VALIDAÇÃO: Validação Simples de Formulário
-   ========================================================================== */
-contactForm.addEventListener('submit', (event) => {
-    event.preventDefault(); // Evita recarregamento da página
-
-    const emailValue = userEmail.value.trim();
-
-    // Regex simples para validação estrutural de e-mail
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (emailValue === "") {
-        showFormMessage("Por favor, preencha o campo de e-mail.", "error");
-    } else if (!emailPattern.test(emailValue)) {
-        showFormMessage("Por favor, insira um e-mail válido.", "error");
-    } else {
-        showFormMessage("Sucesso! Você foi cadastrado em nossa base sustentável.", "success");
-        contactForm.reset();
-    }
-});
-
-// Função auxiliar para exibir feedback dinâmico
-function showFormMessage(text, type) {
-    formMessage.textContent = text;
-    formMessage.className = `form-message ${type}`;
-    
-    // Desaparece com a mensagem após 4 segundos
-    setTimeout(() => {
-        formMessage.textContent = "";
-    }, 4000);
-}
+/* =
