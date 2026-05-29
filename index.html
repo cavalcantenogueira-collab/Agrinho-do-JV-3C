@@ -3,47 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureAgro | Futuro Sustentável</title>
+    <title>Agro Forte, Futuro Sustentável</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo">Future<span>Agro <i class="logo-icon">🌱</i></span></div>
-        
-        <nav class="nav-menu">
-            <a href="#inicio" class="nav-link active">Início</a>
-            <a href="#painel" class="nav-link">Painel de Informações</a>
-            <button id="theme-toggle" class="btn-theme" aria-label="Alternar modo escuro">🌓 Modo Escuro</button>
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="logo">
+            🌱 Agro Forte
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="menu-link active">Início</a></li>
+                <li><a href="#painel" class="menu-link">Painel de Informações</a></li>
+                <li><a href="#contato" class="menu-link">Contato</a></li>
+            </ul>
         </nav>
+
+        <button id="darkModeBtn">
+            🌙 Modo Escuro
+        </button>
     </header>
 
     <main>
-        
-        <section id="inicio" class="hero-section">
-            <div class="hero-content">
-                <h1>FutureAgro, futuro sustentável</h1>
-                <p>Equilíbrio entre produção e meio ambiente. Descubra como a tecnologia e a conscientização estão transformando o campo.</p>
-                <a href="#painel" class="btn-primary">Explorar Painel</a>
+
+        <!-- SEÇÃO INICIAL -->
+        <section id="inicio" class="hero">
+
+            <div class="hero-text">
+                <h1>
+                    Agro Forte, Futuro Sustentável:
+                    Equilíbrio entre Produção e Meio Ambiente
+                </h1>
+
+                <p>
+                    Conheça práticas agrícolas modernas que unem tecnologia,
+                    produtividade e preservação ambiental para construir um
+                    futuro mais sustentável.
+                </p>
+
+                <button id="saibaMais">
+                    Saiba Mais
+                </button>
+
+                <p id="mensagem"></p>
             </div>
+
         </section>
 
-        <section id="painel" class="panel-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Painel de Informações</h2>
-                    <p>Clique nos tópicos abaixo para explorar individualmente as práticas que estão moldando o futuro do nosso ecossistema agrícola.</p>
-                </div>
+        <!-- PAINEL DE TEMAS -->
+        <section id="painel">
 
-                <div class="topics-grid">
-                    
-                    <div class="topic-card" data-topic="consumo">
-                        <h3>Consumo Consciente</h3>
-                        <p>Redução de desperdício e uso inteligente da água.</p>
-                        <button class="btn-card">Ver mais</button>
-                    </div>
+            <h2>Painel de Informações</h2>
 
-                    <div class="topic-card" data-topic="energia">
-                        <h3>Energia Renovável</h3>
-                        <p>O uso de matrizes limpas no dia a dia do campo.</p>
-                        <button class="btn-card">Ver mais</button>
+            <div class="cards">
+
+                <a href="#tema1" class="card">
+                    <h3>♻️ Consumo Consciente</h3>
+                    <p>Redução de desperdícios.</p>
+                </a>
+
+                <a href="#tema2" class="card">
+                    <h3>☀️ Energia Renovável</h3>
+                    <p>Fontes limpas de energia.</p>
+                </a>
+
+                <a href="#tema3" class="card">
+                    <h3>🚜 Agricultura Tecnológica</h3>
+                    <p>Inovação no campo.</p>
+                </a>
+
+                <a href="#tema4" class="card">
+                    <h3>🌎 Impactos Ambientais</h3>
+                    <p>Uso consciente da tecnologia.</p>
+                </a>
+
+                <a href="#tema5" class="card">
+                    <h3>💻 Educação Ambiental</h3>
+                    <p>Aprendizado digital.</p>
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- TEMA 1 -->
+        <section id="tema1" class="tema">
+            <h2>Consumo Consciente e Redução de Desperdício</h2>
+
+            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200"
+                alt="Plantação sustentável">
+
+            <p>
+                O consumo consciente busca reduzir desperdícios de água,
+                energia e insumos agrícolas. Técnicas de monitoramento ajudam
+                produtores a utilizar recursos de forma eficiente.
+            </p>
+        </section>
+
+        <!-- TEMA 2 -->
+        <section id="tema2" class="tema">
+            <h2>Energia Renovável no Dia a Dia</h2>
+
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200"
+                alt="Energia solar">
+
+            <p>
+                A energia solar e eólica ajudam a reduzir custos e impactos
+                ambientais, tornando a produção agrícola mais sustentável.
+            </p>
+        </section>
+
+        <!-- TEMA 3 -->
+        <section id="tema3" class="tema">
+            <h2>Agricultura Sustentável com Tecnologia</h2>
+
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200"
+                alt="Máquinas agrícolas">
+
+            <p>
+                Sensores, drones e inteligência artificial permitem monitorar
+                plantações e otimizar recursos, aumentando a produtividade.
+            </p>
+        </section>
+
+        <!-- TEMA 4 -->
+        <section id="tema4" class="tema">
+            <h2>Impactos Ambientais das Novas Tecnologias</h2>
+
+            <img src="https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?w=1200"
+                alt="Tecnologia no campo">
+
+            <p>
+                O uso responsável das tecnologias reduz impactos ambientais e
+                contribui para a preservação dos recursos naturais.
+            </p>
+        </section>
+
+        <!-- TEMA 5 -->
+        <section id="tema5" class="tema">
+            <h2>Educação Ambiental com Recursos Digitais</h2>
+
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200"
+                alt="Educação digital">
+
+            <p>
+                Plataformas digitais facilitam o acesso ao conhecimento sobre
+                sustentabilidade e boas práticas agrícolas.
+            </p>
+        </section>
+
+        <!-- FORMULÁRIO -->
+        <section id="contato">
+
+            <h2>Receba Informações</h2>
+
+            <form id="formulario">
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome">
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail">
+
+                <button type="submit">
+                    Enviar
+                </button>
+
+            </form>
+
+            <p id="resultado"></p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2025 Agro Forte - Futuro Sustentável
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
