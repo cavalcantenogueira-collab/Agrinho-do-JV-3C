@@ -55,7 +55,7 @@ formulario.addEventListener("submit", function(event){
 });
 
 
-// MENU ATIVO POR ROLAGEM (SCROLL SPY)
+// MENU ATIVO POR ROLAGEM
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".menu-link");
@@ -66,10 +66,9 @@ window.addEventListener("scroll", () => {
 
     sections.forEach(section => {
 
-        const sectionTop = section.offsetTop - 150;
-        const sectionHeight = section.clientHeight;
+        const sectionTop = section.offsetTop - 200;
 
-        if(scrollY >= sectionTop){
+        if(window.scrollY >= sectionTop){
 
             current = section.getAttribute("id");
 
@@ -92,7 +91,7 @@ window.addEventListener("scroll", () => {
 });
 
 
-// ANIMAÇÃO DOS CARDS
+// EFEITO DOS CARDS
 
 const cards = document.querySelectorAll(".card");
 
