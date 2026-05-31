@@ -1,115 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agro Forte, Futuro Sustentável</title>
-
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Forte, Futuro Sustentável</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-
-    <div class="logo">
-        🌱 Agro Forte
-    </div>
-
-    <nav>
-        <ul>
-            <li><a href="#inicio" class="menu-link active">Início</a></li>
-            <li><a href="#painel" class="menu-link">Painel de Informações</a></li>
-            <li><a href="#contato" class="menu-link">Contato</a></li>
-        </ul>
-    </nav>
-
-    <button id="darkModeBtn">🌙 Modo Escuro</button>
-
-</header>
-
-<main>
-
-    <section id="inicio" class="hero">
-
-        <div class="hero-text">
-
-            <h1>Agro Forte, Futuro Sustentável</h1>
-
-            <p>Equilíbrio entre produção agrícola, inovação tecnológica e preservação ambiental.</p>
-
-            <button id="saibaMais">Saiba Mais</button>
-
-            <p id="mensagem"></p>
-
+    <header class="main-header">
+        <div class="logo">
+            <h1>Agro<span>Sustentável</span></h1>
         </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#inicio" class="nav-link active">Início</a></li>
+                <li><a href="#painel" class="nav-link">Painel de Informações</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="btn-theme" aria-label="Alternar modo escuro">🌿 Modo Escuro</button>
+    </header>
 
-    </section>
+    <main>
 
-    <section id="painel">
+        <section id="inicio" class="hero-section">
+            <div class="hero-content">
+                <h2>Agro forte, futuro sustentável:<br><span class="highlight">equilíbrio entre produção e meio ambiente</span></h2>
+                <p>Explore como a tecnologia de ponta e as práticas conscientes estão transformando o campo, garantindo alta produtividade em perfeita harmonia com a natureza.</p>
+                <a href="#painel" class="btn-cta">Explorar Painel</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?auto=format&fit=crop&w=600&q=80" alt="Maquinário agrícola tecnológico no campo">
+            </div>
+        </section>
 
-        <h2>Painel de Informações</h2>
-
-        <div class="cards">
-
-            <div class="card">
-                <h3>♻️ Consumo Consciente</h3>
-                <p>Redução de desperdícios e uso eficiente dos recursos.</p>
+        <section id="painel" class="panel-section">
+            <div class="section-title">
+                <h2>Painel de Informações</h2>
+                <p>Clique nos cards abaixo para abrir e explorar cada tópico interativo de sustentabilidade.</p>
             </div>
 
-            <div class="card">
-                <h3>☀️ Energia Renovável</h3>
-                <p>Energia limpa aplicada ao campo.</p>
+            <div class="grid-topics">
+                
+                <article class="topic-card" data-topic="consumo">
+                    <div class="card-icon">💧</div>
+                    <h3>Consumo Consciente</h3>
+                    <p>Redução de desperdício de água e insumos no campo.</p>
+                    <button class="btn-open-topic">Ler Mais</button>
+                </article>
+
+                <article class="topic-card" data-topic="energia">
+                    <div class="card-icon">☀️</div>
+                    <h3>Energia Renovável</h3>
+                    <p>O uso de matrizes limpas e solares no dia a dia rural.</p>
+                    <button class="btn-open-topic">Ler Mais</button>
+                </article>
+
+                <article class="topic-card" data-topic="tecnologia">
+                    <div class="card-icon">🚜</div>
+                    <h3>Agro & Tecnologia</h3>
+                    <p>Inovações digitais que otimizam as colheitas sustentáveis.</p>
+                    <button class="btn-open-topic">Ler Mais</button>
+                </article>
+
+                <article class="topic-card" data-topic="impactos">
+                    <div class="card-icon">🌱</div>
+                    <h3>Impactos Ambientais</h3>
+                    <p>Análise do impacto positivo das novas tecnologias rurais.</p>
+                    <button class="btn-open-topic">Ler Mais</button>
+                </article>
+
+                <article class="topic-card" data-topic="educacao">
+                    <div class="card-icon">💻</div>
+                    <h3>Educação Ambiental</h3>
+                    <p>Capacitação e recursos digitais para o novo agricultor.</p>
+                    <button class="btn-open-topic">Ler Mais</button>
+                </article>
+
             </div>
 
-            <div class="card">
-                <h3>🚜 Agricultura Tecnológica</h3>
-                <p>Drones, sensores e máquinas inteligentes.</p>
+            <div id="dynamic-content-area" class="content-display hidden">
+                <button id="close-content" class="btn-close">&times; Fechar</button>
+                <div id="dynamic-body">
+                    </div>
             </div>
 
-            <div class="card">
-                <h3>🌎 Impactos Ambientais</h3>
-                <p>Tecnologia aliada à preservação.</p>
+            <div class="feedback-container">
+                <h3>Ficou com alguma dúvida ou tem uma sugestão?</h3>
+                <form id="contact-form" novalidate>
+                    <div class="form-group">
+                        <input type="email" id="user-email" placeholder="Seu melhor e-mail" required>
+                        <button type="submit" class="btn-submit">Enviar</button>
+                    </div>
+                    <p id="form-message" class="form-message"></p>
+                </form>
             </div>
 
-            <div class="card">
-                <h3>💻 Educação Ambiental</h3>
-                <p>Conhecimento digital para sustentabilidade.</p>
-            </div>
+        </section>
+    </main>
 
-            <div class="card">
-                <h3>💧 Gestão Inteligente da Água</h3>
-                <p>Uso racional dos recursos hídricos.</p>
-            </div>
+    <footer class="main-footer">
+        <p>&copy; 2026 Agro Sustentável. Projeto Educativo — Equilíbrio e Tecnologia.</p>
+    </footer>
 
-        </div>
-
-    </section>
-
-    <section id="contato">
-
-        <h2>Receba Informações</h2>
-
-        <form id="formulario">
-
-            <input type="text" id="nome" placeholder="Digite seu nome">
-            <input type="email" id="email" placeholder="Digite seu e-mail">
-
-            <button type="submit">Enviar</button>
-
-        </form>
-
-        <p id="resultado"></p>
-
-    </section>
-
-</main>
-
-<footer>
-    <p>© 2025 Agro Forte - Futuro Sustentável</p>
-</footer>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
