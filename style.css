@@ -74,9 +74,10 @@ nav a:hover{
     text-align:center;
     color:white;
 
+    /* O fundo agora procura pela imagem com o nome simplificado */
     background:
     linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
-    url("Agronegocio-brasileiro-vai-ganhar-com-acordo-entre-Mercosul-e-Uniao-Europeia.jpg");
+    url("campo.jpg");
 
     background-size:cover;
     background-position:center;
